@@ -6,11 +6,67 @@
     <Application.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Dark.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Light.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Defaults.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Primary/MaterialDesignColor.DeepPurple.xaml" />
-                <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Accent/MaterialDesignColor.Lime.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Accent/MaterialDesignColor.DeepPurple.xaml" />
             </ResourceDictionary.MergedDictionaries>
+            <ControlTemplate x:Key="RegularTextBoxTemplate" TargetType="{x:Type TextBox}">
+                <Grid SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
+              HorizontalAlignment="{TemplateBinding HorizontalAlignment}"
+              VerticalAlignment="{TemplateBinding VerticalAlignment}"
+              Margin="0">
+                    <VisualStateManager.VisualStateGroups>
+                        <VisualStateGroup x:Name="CommonStates">
+                            <VisualStateGroup.Transitions>
+                                <VisualTransition GeneratedDuration="0:0:0.1"/>
+                            </VisualStateGroup.Transitions>
+                            <VisualState x:Name="Normal"/>
+                            <VisualState x:Name="MouseOver">
+                                <Storyboard>
+                                    <ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(TextBox.Foreground).(SolidColorBrush.Color)">
+                                        <EasingColorKeyFrame KeyTime="0" Value="{DynamicResource MouseOverColor}" />
+                                    </ColorAnimationUsingKeyFrames>
+                                </Storyboard>
+                            </VisualState>
+                            <VisualState x:Name="Disabled"/>
+                            <VisualState x:Name="ReadOnly"/>
+                        </VisualStateGroup>
+                    </VisualStateManager.VisualStateGroups>
+                    <Border x:Name="NormalVisual" Opacity="1"
+                           BorderThickness="{TemplateBinding BorderThickness}"
+                           BorderBrush="{TemplateBinding BorderBrush}"
+                           Background="{TemplateBinding Background}"/>
+                    <ScrollViewer x:Name="PART_ContentHost" 
+                                  Grid.Column="1"
+                                  BorderThickness="0"
+                                  IsTabStop="False"
+                                  Margin="{TemplateBinding Padding}"
+                                  VerticalAlignment="Stretch"
+                                  VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
+                                  Background="{x:Null}"
+                                  HorizontalAlignment="Stretch"
+                                  HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"/>
+                </Grid>
+            </ControlTemplate>
+
+            <Style x:Key="RegularTextBox" TargetType="{x:Type TextBox}">
+                <Setter Property="SnapsToDevicePixels" Value="True"/>
+                <Setter Property="OverridesDefaultStyle" Value="True"/>
+                <Setter Property="Height" Value="26"/>
+                <Setter Property="Width" Value="400"/>
+                <Setter Property="Margin" Value="20"/>
+                <Setter Property="BorderBrush" Value="Black"/>
+                <Setter Property="BorderThickness" Value="1"/>
+                <Setter Property="HorizontalContentAlignment" Value="Left" />
+                <Setter Property="VerticalContentAlignment" Value="Center" />
+                <Setter Property="Foreground">
+                    <Setter.Value>
+                        <SolidColorBrush x:Name="tbtest" Color="{DynamicResource NormalColor}"/>
+                    </Setter.Value>
+                </Setter>
+                <Setter Property="Template" Value="{StaticResource RegularTextBoxTemplate}"/>
+            </Style>
         </ResourceDictionary>
     </Application.Resources>
 </Application>

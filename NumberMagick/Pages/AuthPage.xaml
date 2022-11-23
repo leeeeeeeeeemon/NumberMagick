@@ -92,6 +92,82 @@
                             </StackPanel>
                         </Grid>
                     </TabItem>
+                    <TabItem Header="Reg">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="3*" />
+                                <RowDefinition Height="1*" />
+                            </Grid.RowDefinitions>
+
+                            <StackPanel
+                            Grid.Row="0"
+                            Width="300"
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Center"
+                            Orientation="Vertical">
+                                <StackPanel>
+                                    <TextBox
+                                    x:Name="NameReg_tb"
+                                    Margin="5"
+                                    VerticalAlignment="Top"
+                                    materialDesign:HintAssist.Hint="Name"
+                                    Cursor="Arrow"
+                                    Style="{StaticResource MaterialDesignOutlinedTextBox}"
+                                    TextWrapping="Wrap" />
+                                    <TextBox
+                                    x:Name="loginReg_tb"
+                                    Margin="5"
+                                    VerticalAlignment="Top"
+                                    materialDesign:HintAssist.Hint="Login"
+                                    Cursor="Arrow"
+                                    Style="{StaticResource MaterialDesignOutlinedTextBox}"
+                                    TextWrapping="Wrap" />
+                                </StackPanel>
+
+                                <PasswordBox
+                                x:Name="passReg_pb"
+                                Margin="5"
+                                materialDesign:HintAssist.Hint="Password"
+                                MaxLength="40"
+                                Style="{StaticResource MaterialDesignOutlinedPasswordBox}" />
+                                <PasswordBox
+                                x:Name="passRegRepeat_pb"
+                                Margin="5"
+                                materialDesign:HintAssist.Hint="Repeat password"
+                                MaxLength="40"
+                                Style="{StaticResource MaterialDesignOutlinedPasswordBox}" />
+
+                                <Button
+                                x:Name="RegBtn"
+                                Margin="5,10"
+                                Click="RegBtn_Click"
+                                Content="Reg"
+                                Cursor="Hand"
+                                IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
+                                Style="{StaticResource MaterialDesignRaisedSecondaryButton}" />
+
+                                <materialDesign:Card
+                                x:Name="MsgAuthCardReg"
+                                Width="300"
+                                Margin="5,0"
+                                Padding="8"
+                                HorizontalAlignment="Center"
+                                Background="Red"
+                                Foreground="{DynamicResource PrimaryHueDarkForegroundBrush}"
+                                UniformCornerRadius="6"
+                                Visibility="Collapsed">
+                                    <StackPanel HorizontalAlignment="Center" Orientation="Horizontal">
+                                        <materialDesign:PackIcon Kind="Alert" />
+                                        <TextBlock
+                                        x:Name="MsgAuthTBReg"
+                                        HorizontalAlignment="Center"
+                                        Text="Такого пользователья не существует!"
+                                        TextWrapping="Wrap" />
+                                    </StackPanel>
+                                </materialDesign:Card>
+                            </StackPanel>
+                        </Grid>
+                    </TabItem>
                 </TabControl>
             </materialDesign:Card>
         </Grid>

@@ -13,6 +13,8 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using TranslateTest;
+using NumberMagick.DB;
+
 namespace NumberMagick.Pages
 {
     /// <summary>
@@ -20,6 +22,7 @@ namespace NumberMagick.Pages
     /// </summary>
     public partial class MainPageUser : Page
     {
+        public static User user { get; set; }
         public MainPageUser()
         {
             InitializeComponent();
@@ -28,11 +31,18 @@ namespace NumberMagick.Pages
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-
+            if(user == null)
+            {
+                NavigationService.Navigate(new AuthPage());
+            } else
+            {
+                NavigationService.Navigate(new UserPage());
+            }
         }
 
         private void btn_generate_Click(object sender, RoutedEventArgs e)
         {
+            saveCB.IsChecked = false;
             switch(format_cb.SelectedIndex)
             {
                 case 0:
@@ -77,6 +87,30 @@ namespace NumberMagick.Pages
                     break;
             }
             
+            
+        }
+
+        private void saveCB_Checked(object sender, RoutedEventArgs e)
+        {
+            if (saveCB.IsChecked == true)
+            {
+                if (user == null)
+                {
+                    MessageBox.Show("Log in first!");
+                    return;
+                }
+                SaveNumber saveNumber = new SaveNumber();
+                saveNumber.Number = number_tb.Text;
+                saveNumber.Descp = tb_Text.Text;
+                saveNumber.IdUser = user.Id;
+                DB.bd_connection.connection.SaveNumber.Add(saveNumber);
+                DB.bd_connection.connection.SaveChanges();
+            } else
+            {
+                SaveNumber saveNumber = bd_connection.connection.SaveNumber.Last();
+                bd_connection.connection.SaveNumber.Remove(saveNumber);
+                DB.bd_connection.connection.SaveChanges();
+            }
             
         }
     }
