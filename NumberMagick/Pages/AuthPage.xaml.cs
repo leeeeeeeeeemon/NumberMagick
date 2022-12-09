@@ -35,9 +35,12 @@ namespace NumberMagick.Pages
 
         private void AuthBtn_Click(object sender, RoutedEventArgs e)
         {
+            MsgAuthCard.Visibility = Visibility.Collapsed;
             if (loginAuth_tb.Text == "" || passAuth_pb.Password == "")
             {
-                MessageBox.Show("Fill in all the fields!");
+                //MessageBox.Show("Fill in all the fields!");
+                MsgAuthTB.Text = "Fill in all the fields!";
+                MsgAuthCard.Visibility = Visibility.Visible;
                 return;
             }
             User AuthUser = DB.bd_connection.connection.User.Where(x => x.Login == loginAuth_tb.Text && x.Password == passAuth_pb.Password).FirstOrDefault();
@@ -48,26 +51,36 @@ namespace NumberMagick.Pages
             }
             else
             {
-                MessageBox.Show("User not found!");
+                //MessageBox.Show("User not found!");
+                MsgAuthTB.Text = "User not found!";
+                MsgAuthCard.Visibility = Visibility.Visible;
                 return;
             }
         }
 
         private void RegBtn_Click(object sender, RoutedEventArgs e)
         {
+            MsgAuthCardReg.Visibility = Visibility.Collapsed;
             if(NameReg_tb.Text == "" || loginReg_tb.Text == "" || passReg_pb.Password == "" || passRegRepeat_pb.Password == "")
             {
-                MessageBox.Show("Fill in all the fields!");
+                MsgAuthTBReg.Text = "Fill in all the fields!";
+                MsgAuthCardReg.Visibility = Visibility.Visible;
+               // MessageBox.Show("Fill in all the fields!");
                 return;
             }
             if(passReg_pb.Password != passRegRepeat_pb.Password)
             {
-                MessageBox.Show("The passwords don't match!");
+                //MessageBox.Show("The passwords don't match!");
+                MsgAuthTBReg.Text = "The passwords don't match!";
+                MsgAuthCardReg.Visibility = Visibility.Visible;
+                return;
             }
             User user = DB.bd_connection.connection.User.Where(x => x.Login == loginReg_tb.Text).FirstOrDefault();
             if (user != null)
             {
-                MessageBox.Show("A user with this login already exists!");
+                //MessageBox.Show("A user with this login already exists!");
+                MsgAuthTBReg.Text = "A user with this login already exists!";
+                MsgAuthCardReg.Visibility = Visibility.Visible;
                 return;
             }
             User newUser = new User();

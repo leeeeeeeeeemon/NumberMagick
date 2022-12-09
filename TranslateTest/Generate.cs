@@ -55,6 +55,35 @@ namespace TranslateTest
                 return null;
             }
         }
+        public static string GetSCurrYear(string Number)
+        {
+            var url = $"http://numbersapi.com/{Number}/year";
+
+            var request = WebRequest.Create(url);
+            try
+            {
+                var response = request.GetResponse();
+                var httpStatusCode = (response as HttpWebResponse).StatusCode;
+
+                if (httpStatusCode == HttpStatusCode.OK)
+                {
+                    using (var streamReader = new StreamReader(response.GetResponseStream()))
+                    {
+                        string tmp = streamReader.ReadToEnd();
+                        return tmp;
+                    }
+                }
+                else
+                {
+                    return null;
+                }
+            }
+            catch
+            {
+                return "Something wrong!";
+            }
+
+        }
         public static string GetSRandomDate()
         {
             var url = $"http://numbersapi.com/random/date";
@@ -126,6 +155,7 @@ namespace TranslateTest
             }
 
         }
+
         public static string GetSCurrTrivia(string Number)
         {
             var url = $"http://numbersapi.com/{Number}";
@@ -183,6 +213,8 @@ namespace TranslateTest
             }
 
         }
+
+        
     }
     
     public class Root

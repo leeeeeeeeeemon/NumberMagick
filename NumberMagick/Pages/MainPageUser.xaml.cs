@@ -58,11 +58,11 @@ namespace NumberMagick.Pages
                 case 1:
                     if (number_tb.Text == "")
                     {
-                        tb_Text.Text = TranslateTest.Generate.GetSRandomDate();
+                        tb_Text.Text = TranslateTest.Generate.GetSRandomYear();
                     }
                     else
                     {
-                        tb_Text.Text = TranslateTest.Generate.GetSCurrDate(number_tb.Text);
+                        tb_Text.Text = TranslateTest.Generate.GetSCurrYear(number_tb.Text);
                     }
                     break;
                 case 2:

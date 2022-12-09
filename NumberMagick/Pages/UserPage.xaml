@@ -96,6 +96,7 @@
                                             Margin="0"
                                             Style="{StaticResource MaterialDesignSubtitle1TextBlock}"
                                             Text="{Binding Descp}"
+                                            HorizontalAlignment="Center"
                                             TextWrapping="Wrap" />
                                         <Separator
                                         Grid.Row="2"
@@ -113,6 +114,7 @@
                                             Margin="0"
                                             Style="{StaticResource MaterialDesignSubtitle1TextBlock}"
                                             Text="{Binding Number}"
+                                        HorizontalAlignment="Center"
                                             TextWrapping="Wrap" />
                                     <Grid Grid.Row="4">
                                         <Grid.ColumnDefinitions>
